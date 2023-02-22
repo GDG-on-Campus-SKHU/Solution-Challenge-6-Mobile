@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>702153606455-37a0ra5htanbvsip59h8hn03ck4a21ev.apps.googleusercontent.com</string>
+				<string>com.googleusercontent.apps.702153606455-37a0ra5htanbvsip59h8hn03ck4a21ev</string>
 			</array>
 		</dict>
 	</array>
@@ -39,6 +39,8 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>CLIENT_ID</key>
 	<string>702153606455-37a0ra5htanbvsip59h8hn03ck4a21ev.apps.googleusercontent.com</string>
+	<key>GoogleService-Info</key>
+	<string>GoogleService-Info.plist</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>PLIST_VERSION</key>
