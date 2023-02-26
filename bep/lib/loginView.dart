@@ -1,29 +1,24 @@
+import 'MainView/mainView.dart';
 import 'package:flutter/material.dart';
-import 'mainView.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:http/http.dart' as http;
 import 'login_platform.dart';
 
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   _LoginViewState createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   LoginPlatform _loginPlatform = LoginPlatform.none;
 
+  GoogleSignInAccount? googleUser = null;
   void signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    googleUser = await GoogleSignIn().signIn();
 
     if (googleUser != null) {
-      print('name = ${googleUser.displayName}');
-      print('email = ${googleUser.email}');
-      print('id = ${googleUser.id}');
-
       setState(() {
         _loginPlatform = LoginPlatform.google;
       });
@@ -50,17 +45,18 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: _loginPlatform != LoginPlatform.none
-              ? _logoutButton()
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _loginButton(
-                      'google_logo',
-                      signInWithGoogle,
-                    )
-                  ],
-                )),
+        child: _loginPlatform != LoginPlatform.none && googleUser != null
+            ? mainView(googleUser: googleUser!)
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _loginButton(
+                    'google_logo',
+                    signInWithGoogle,
+                  )
+                ],
+              ),
+      ),
     );
   }
 
@@ -74,17 +70,5 @@ class _LoginViewState extends State<LoginView> {
           text: "Sign up with Google",
           onPressed: onTap,
         ));
-  }
-
-  Widget _logoutButton() {
-    return ElevatedButton(
-      onPressed: signOut,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          const Color(0xff0165E1),
-        ),
-      ),
-      child: const Text('로그아웃'),
-    );
   }
 }

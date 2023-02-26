@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'loginView.dart';
 
 void main() {
-  runApp(new MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'BeP',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: new LoginView(),
+      home: LoginView(),
     );
   }
 }
