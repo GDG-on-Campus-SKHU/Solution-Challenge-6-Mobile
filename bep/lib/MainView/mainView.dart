@@ -1,4 +1,5 @@
 import 'package:bep/MainView/globalButton.dart';
+import 'package:bep/MainView/quizeCardContainer.dart';
 import 'package:bep/MainView/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,6 +20,7 @@ class _mainViewState extends State<mainView> {
   static final CameraPosition _kInitialPosition =
       CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
   late GoogleMapController _controller;
+  bool _isQuizeOpen = false;
 
   Future<void> onMapCreated(GoogleMapController controller) async {
     _controller = controller;
@@ -41,7 +43,15 @@ class _mainViewState extends State<mainView> {
             child: Stack(
               children: [
                 userProfile(widget.googleUser.displayName.toString()),
-                globalButton(),
+                globalButton(
+                  isQuizeOpen: _isQuizeOpen,
+                  onToggleActive: (value) {
+                    setState(() {
+                      _isQuizeOpen = value;
+                    });
+                  },
+                ),
+                quizeCardContainer(isQuizeOpen: _isQuizeOpen),
               ],
             ),
           )

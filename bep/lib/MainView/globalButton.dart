@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class globalButton extends StatelessWidget {
+  final bool isQuizeOpen;
+  final ValueChanged<bool> onToggleActive;
+
+  globalButton({
+    required this.isQuizeOpen,
+    required this.onToggleActive,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +18,9 @@ class globalButton extends StatelessWidget {
         child: IconButton(
           iconSize: 40,
           icon: Image.asset('assets/global.gif'),
-          onPressed: () {},
+          onPressed: () {
+            onToggleActive(!isQuizeOpen);
+          },
         ),
       ),
     );
