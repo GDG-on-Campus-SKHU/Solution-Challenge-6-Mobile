@@ -21,12 +21,32 @@ class _mainViewState extends State<mainView> {
       CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
   late GoogleMapController _controller;
   bool _isQuizeOpen = false;
+  Map<MarkerId, Marker> _markers = {};
 
   Future<void> onMapCreated(GoogleMapController controller) async {
     _controller = controller;
     String value = await DefaultAssetBundle.of(context)
         .loadString('assets/map_style.json');
     _controller.setMapStyle(value);
+  }
+
+  void _addMarker(LatLng latLng) {
+    final MarkerId markerId =
+        MarkerId('marker_id_${DateTime.now().millisecondsSinceEpoch}');
+
+    final Marker marker = Marker(
+      markerId: markerId,
+      position: latLng,
+      infoWindow: InfoWindow(
+        title: '마커 타이틀',
+        snippet: '마커 스니펫',
+      ),
+      icon: BitmapDescriptor.defaultMarker,
+    );
+
+    setState(() {
+      _markers[markerId] = marker;
+    });
   }
 
   @override
@@ -38,6 +58,11 @@ class _mainViewState extends State<mainView> {
             initialCameraPosition: _kInitialPosition,
             onMapCreated: onMapCreated,
             myLocationButtonEnabled: false,
+            markers: _markers.values.toSet(),
+            onTap: (latLng) {
+              _addMarker(latLng);
+              print('$latLng');
+            },
           ),
           SafeArea(
             child: Stack(
