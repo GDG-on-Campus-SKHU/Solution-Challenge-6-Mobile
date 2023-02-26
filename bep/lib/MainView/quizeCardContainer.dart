@@ -1,4 +1,5 @@
 import 'package:bep/MainView/quizeCard.dart';
+import 'package:bep/Util/quizeType.dart';
 import 'package:flutter/material.dart';
 
 class quizeCardContainer extends StatelessWidget {
@@ -15,9 +16,15 @@ class quizeCardContainer extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              quizeCard(),
-              quizeCard(),
-              quizeCard(),
+              quizeCard(
+                  type: quizeType.Land,
+                  question: "Find the countries that plant the most trees"),
+              quizeCard(
+                  type: quizeType.Land,
+                  question: "Find a country where a variety of grasses grow"),
+              quizeCard(
+                  type: quizeType.Land,
+                  question: "Find the countries that plant the most trees"),
             ],
           ),
         ),
