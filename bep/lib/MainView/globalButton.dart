@@ -17,7 +17,7 @@ class globalButton extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, 0, 16, 16),
         child: IconButton(
           iconSize: 40,
-          icon: Image.asset('assets/global.gif'),
+          icon: Image.asset('assets/images/global.gif'),
           onPressed: () {
             onToggleActive(!isQuizeOpen);
           },
