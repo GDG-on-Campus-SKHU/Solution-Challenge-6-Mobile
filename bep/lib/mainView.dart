@@ -26,9 +26,7 @@ class _mainViewState extends State<mainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Google Maps Demo'),
-      ),
+      appBar: null,
       body: GoogleMap(
         initialCameraPosition: _kInitialPosition,
         onMapCreated: onMapCreated,
