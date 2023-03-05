@@ -17,22 +17,19 @@ class mainView extends StatefulWidget {
 
 class _mainViewState extends State<mainView> {
   static final LatLng _kMapCenter = LatLng(37.485172, 126.783173);
-  static final CameraPosition _kInitialPosition =
-      CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
+  static final CameraPosition _kInitialPosition = CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
   late GoogleMapController _controller;
   bool _isQuizeOpen = false;
   Map<MarkerId, Marker> _markers = {};
 
   Future<void> onMapCreated(GoogleMapController controller) async {
     _controller = controller;
-    String value = await DefaultAssetBundle.of(context)
-        .loadString('assets/map_style.json');
+    String value = await DefaultAssetBundle.of(context).loadString('assets/map_style.json');
     _controller.setMapStyle(value);
   }
 
   void _addMarker(LatLng latLng) {
-    final MarkerId markerId =
-        MarkerId('marker_id_${DateTime.now().millisecondsSinceEpoch}');
+    final MarkerId markerId = MarkerId('marker_id_${DateTime.now().millisecondsSinceEpoch}');
 
     final Marker marker = Marker(
       markerId: markerId,
@@ -67,7 +64,7 @@ class _mainViewState extends State<mainView> {
           SafeArea(
             child: Stack(
               children: [
-                userProfile(widget.googleUser.displayName.toString()),
+                userProfile(widget.googleUser.displayName.toString()[0]),
                 globalButton(
                   isQuizeOpen: _isQuizeOpen,
                   onToggleActive: (value) {

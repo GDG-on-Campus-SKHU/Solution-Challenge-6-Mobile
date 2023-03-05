@@ -16,12 +16,12 @@ class _LoginViewState extends State<LoginView> {
   LoginPlatform _loginPlatform = LoginPlatform.none;
   GoogleSignInAccount? googleUser = null;
   LoginController loginController = LoginController();
+
   void signInWithGoogle() async {
     final prefs = await SharedPreferences.getInstance();
     try {
       googleUser = await GoogleSignIn().signIn();
-      googleLoginResponse? response =
-          await loginController.googleLogin(googleUser!);
+      googleLoginResponse? response = await loginController.googleLogin(googleUser!);
       prefs.setString('accessToken', response!.token!);
       setState(() {
         _loginPlatform = LoginPlatform.google;
@@ -61,8 +61,7 @@ class _LoginViewState extends State<LoginView> {
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                     child: Text(
                       "BeP",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Image.asset(
