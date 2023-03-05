@@ -2,93 +2,86 @@ import 'package:flutter/material.dart';
 
 Widget modalView(_width, context) {
   return Container(
-    height: 600,
+    height: MediaQuery.of(context).size.height,
     child: Column(
       children: [
         Image.asset('assets/images/LIFEBELOWWATER.png'),
         Stack(children: [
           Container(
             alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 325,
-              height: 242,
-              child: Transform.translate(
-                offset: Offset(16, 16),
-                child: Text(
-                  'LIFE BELOW WATER',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
-                ),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 0.0),
+              child: Text(
+                'LIFE BELOW WATER',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
           Container(
             alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 325,
-              height: 242,
-              child: Transform.translate(
-                offset: Offset(16, 36),
-                child: Text(
-                  'Find the countries that plant the most trees',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16.0, 36.0, 16.0, 0.0),
+              child: Text(
+                'Find the countries that plant the most trees',
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          Container(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 325,
-              height: 300,
-              child: Transform.translate(
-                offset: Offset(16, 80),
+          Column(children: [
+            Container(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(16.0, 74.0, 16.0, 0.0),
                 child: Text(
                   'France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower. The country is also renowned for its wines and sophisticated cuisine. Lascaux’s ancient cave drawings, Lyon’s Roman theater and the vast Palace of Versailles attest to its rich history.',
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16, height: 1.5),
                 ),
               ),
             ),
-          ),
-          Container(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 325,
-              height: 300,
-              child: Transform.translate(
-                offset: Offset(16, 380),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 74.0),
                 child: Text(
                   '― Google',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.blue,
+                    height: 1.5,
+                    color: Color.fromRGBO(73, 124, 255, 1.0),
                   ),
                 ),
               ),
             ),
-          ),
+          ]),
           Container(
-            width: 328.0,
-            height: 60.0,
-            alignment: Alignment.topLeft,
-            child: Transform.translate(
-              offset: Offset(16, MediaQuery.of(context).size.height - 300),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Donate', style: TextStyle(color: Colors.white)),
-                style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(328.0, 60.0)),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromRGBO(54, 123, 183, 1.0)),
-                ),
-              ),
-            ),
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(16.0, 564.0, 16.0, 16.0),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/donation.png'),
+                        SizedBox(width: 8.0),
+                        Text('Donate',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
+                      ]),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(MediaQuery.of(context).size.width, 60.0),
+                    backgroundColor: Color.fromRGBO(54, 123, 183, 1.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                )),
           ),
         ]),
       ],
