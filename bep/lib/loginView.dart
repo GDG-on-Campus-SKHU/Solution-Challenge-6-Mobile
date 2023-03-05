@@ -1,6 +1,8 @@
+import 'package:bep/Api/loginController.dart';
 import 'MainView/mainView.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'login_platform.dart';
 
 class LoginView extends StatefulWidget {
@@ -13,13 +15,19 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   LoginPlatform _loginPlatform = LoginPlatform.none;
   GoogleSignInAccount? googleUser = null;
+  LoginController loginController = LoginController();
   void signInWithGoogle() async {
-    googleUser = await GoogleSignIn().signIn();
-
-    if (googleUser != null) {
+    final prefs = await SharedPreferences.getInstance();
+    try {
+      googleUser = await GoogleSignIn().signIn();
+      googleLoginResponse? response =
+          await loginController.googleLogin(googleUser!);
+      prefs.setString('accessToken', response!.token!);
       setState(() {
         _loginPlatform = LoginPlatform.google;
       });
+    } catch (e) {
+      print(e);
     }
   }
 
