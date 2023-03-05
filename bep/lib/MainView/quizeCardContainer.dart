@@ -1,10 +1,12 @@
+import 'package:bep/Api/quizeController.dart';
 import 'package:bep/MainView/quizeCard.dart';
 import 'package:bep/Util/quizeType.dart';
 import 'package:flutter/material.dart';
 
 class quizeCardContainer extends StatefulWidget {
-  quizeCardContainer({required this.isQuizeOpen});
+  quizeCardContainer({required this.isQuizeOpen, required this.quizes});
   final bool isQuizeOpen;
+  final List<Quize> quizes;
 
   @override
   State<quizeCardContainer> createState() => _quizeCardContainerState();
@@ -17,6 +19,22 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
   void initState() {
     super.initState();
     _isSelectedList = List.generate(3, (_) => false);
+  }
+
+  List<quizeCard> quizeCardList() {
+    List<quizeCard> quizeCards = [];
+    for (int i = 0; i < widget.quizes.length; i++) {
+      quizeCards.add(
+        quizeCard(
+          index: i,
+          selectedList: _isSelectedList,
+          type: quizeType.Land,
+          question: widget.quizes[i].question,
+          onSelected: _onSelect,
+        ),
+      );
+    }
+    return quizeCards;
   }
 
   void _onSelect(int index) {
@@ -38,32 +56,7 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 76),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              quizeCard(
-                index: 0,
-                selectedList: _isSelectedList,
-                type: quizeType.Land,
-                question: "Find the countries that plant the most trees",
-                onSelected: _onSelect,
-              ),
-              quizeCard(
-                index: 1,
-                selectedList: _isSelectedList,
-                type: quizeType.Land,
-                question: "Find a country where a variety of grasses grow",
-                onSelected: _onSelect,
-              ),
-              quizeCard(
-                index: 2,
-                selectedList: _isSelectedList,
-                type: quizeType.Land,
-                question: "Find the countries that plant the most trees",
-                onSelected: _onSelect,
-              ),
-            ],
-          ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.end, children: quizeCardList()),
         ),
       ),
     );

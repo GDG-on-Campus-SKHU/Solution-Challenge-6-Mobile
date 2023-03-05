@@ -1,11 +1,7 @@
+import 'package:bep/Api/Response/googleLoginResponse.dart';
 import 'package:bep/Api/dioSetting.dart';
 import 'package:dio/dio.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-class googleLoginResponse {
-  String? token = null;
-  googleLoginResponse({required this.token});
-}
 
 class LoginController {
   Dio dio = createDioClient();

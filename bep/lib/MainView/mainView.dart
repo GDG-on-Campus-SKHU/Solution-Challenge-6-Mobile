@@ -1,3 +1,4 @@
+import 'package:bep/Api/quizeController.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
 import 'package:bep/MainView/userProfile.dart';
@@ -18,9 +19,27 @@ class mainView extends StatefulWidget {
 class _mainViewState extends State<mainView> {
   static final LatLng _kMapCenter = LatLng(37.485172, 126.783173);
   static final CameraPosition _kInitialPosition = CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
+
   late GoogleMapController _controller;
   bool _isQuizeOpen = false;
   Map<MarkerId, Marker> _markers = {};
+  QuizeController quizeController = QuizeController();
+  List<Quize> quizes = [];
+
+  initState() {
+    super.initState();
+    print(quizes);
+    _getQuize();
+  }
+
+  Future<void> _getQuize() async {
+    final response = await quizeController.getQuize();
+    setState(() {
+      quizes = response!;
+
+      print(quizes);
+    });
+  }
 
   Future<void> onMapCreated(GoogleMapController controller) async {
     _controller = controller;
@@ -73,7 +92,10 @@ class _mainViewState extends State<mainView> {
                     });
                   },
                 ),
-                quizeCardContainer(isQuizeOpen: _isQuizeOpen),
+                quizeCardContainer(
+                  isQuizeOpen: _isQuizeOpen,
+                  quizes: quizes,
+                ),
               ],
             ),
           )
