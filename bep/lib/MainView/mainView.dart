@@ -4,7 +4,7 @@ import 'package:bep/MainView/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
-
+import 'package:bep/ModalView/modalView.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class mainView extends StatefulWidget {
@@ -30,6 +30,22 @@ class _mainViewState extends State<mainView> {
     _controller.setMapStyle(value);
   }
 
+  // Widget showModalView() {
+  //   final _width = MediaQuery.of(context).size.width;
+  //   print("실행");
+  //   return DraggableScrollableSheet(
+  //       initialChildSize: 0.30,
+  //       minChildSize: 0.25,
+  //       expand: true,
+  //       // 구현할 DraggableScrollableSheet 위젯의 속성
+  //       builder: (BuildContext context, ScrollController scrollController) {
+  //         return SingleChildScrollView(
+  //           controller: scrollController,
+  //           child: modalView(_width, context, scrollController),
+  //         );
+  //       });
+  // }
+
   void _addMarker(LatLng latLng) {
     final MarkerId markerId =
         MarkerId('marker_id_${DateTime.now().millisecondsSinceEpoch}');
@@ -51,6 +67,7 @@ class _mainViewState extends State<mainView> {
 
   @override
   Widget build(BuildContext context) {
+    final _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
@@ -61,6 +78,21 @@ class _mainViewState extends State<mainView> {
             markers: _markers.values.toSet(),
             onTap: (latLng) {
               _addMarker(latLng);
+              showModalBottomSheet(
+                context: this.context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return DraggableScrollableSheet(
+                    expand: false,
+                    builder: (context, scrollController) {
+                      return SingleChildScrollView(
+                        controller: scrollController,
+                        child: modalView(_width, context),
+                      ); //whatever you're returning, does not have to be a Container
+                    },
+                  );
+                },
+              );
               print('$latLng');
             },
           ),
