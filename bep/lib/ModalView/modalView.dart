@@ -1,3 +1,4 @@
+import 'package:bep/PopupView/popupView.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -77,7 +78,9 @@ Widget modalView(_width, context) {
             child: Padding(
                 padding: EdgeInsets.fromLTRB(16.0, 564.0, 16.0, 16.0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => popupView(context)),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
