@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:PopupView/titlePopup.dart';
 
 class popupView extends StatefulWidget {
   @override
@@ -29,11 +30,7 @@ class _popupViewState extends State<popupView> {
           borderRadius: BorderRadius.circular(20.0),
         ),
         elevation: 4.0,
-        title: Text(
-          'How many points would you like to donate?',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+        title: titlePopup(),
         content:
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           TextButton(
