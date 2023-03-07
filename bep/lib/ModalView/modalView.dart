@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bep/ModalView/imageWidget.dart';
-import 'package:bep/ModalView/textWidget.dart';
-import 'package:bep/ModalView/buttonWidget.dart';
+import 'package:bep/ModalView/';
 
 Widget modalView(_width, context) {
   return Container(
@@ -13,6 +11,7 @@ Widget modalView(_width, context) {
           partWidget(),
           quizeWidget(),
           answerWidget(),
+          searchWidget(),
           donateBtn(context),
         ]),
       ],

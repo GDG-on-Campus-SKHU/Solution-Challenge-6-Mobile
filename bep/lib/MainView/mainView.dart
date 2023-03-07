@@ -50,7 +50,7 @@ class _mainViewState extends State<mainView> {
     });
   }
 
-  void _openModel() {
+  void _openModel(context) {
     final _width = MediaQuery.of(context).size.width;
 
     showModalBottomSheet(
@@ -82,7 +82,7 @@ class _mainViewState extends State<mainView> {
             markers: _markers.values.toSet(),
             onTap: (latLng) {
               _addMarker(latLng);
-              _openModel();
+              _openModel(context);
               print('$latLng');
             },
           ),
