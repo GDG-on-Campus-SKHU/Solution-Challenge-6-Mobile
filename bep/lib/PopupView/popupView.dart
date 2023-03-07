@@ -71,7 +71,7 @@ class _popupViewState extends State<popupView> {
             padding: EdgeInsets.only(bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Container(
                   width: 125,
                   height: 50,
