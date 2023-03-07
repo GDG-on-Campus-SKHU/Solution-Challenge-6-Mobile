@@ -80,7 +80,7 @@ Widget modalView(_width, context) {
                 child: ElevatedButton(
                   onPressed: () => showDialog<String>(
                       context: context,
-                      builder: (BuildContext context) => popupView(context)),
+                      builder: (BuildContext context) => popupView()),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
