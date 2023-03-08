@@ -1,5 +1,10 @@
+import 'package:bep/ModalView/answerWidget.dart';
+import 'package:bep/ModalView/buttonWidget.dart';
+import 'package:bep/ModalView/imageWidget.dart';
+import 'package:bep/ModalView/partWidget.dart';
+import 'package:bep/ModalView/quizeWidget.dart';
+import 'package:bep/ModalView/searchLinkWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:bep/ModalView/';
 
 Widget modalView(_width, context) {
   return Container(
@@ -10,8 +15,18 @@ Widget modalView(_width, context) {
         Stack(children: [
           partWidget(),
           quizeWidget(),
-          answerWidget(),
-          searchWidget(),
+          Padding(
+            padding: EdgeInsets.fromLTRB(16.0, 74.0, 16.0, 0.0),
+            child: Column(
+              children: [
+                answerWidget(),
+                Container(
+                  margin: EdgeInsets.only(top: 1.0),
+                  child: searchLinkWidget(),
+                ),
+              ],
+            ),
+          ),
           donateBtn(context),
         ]),
       ],
