@@ -4,7 +4,7 @@ import 'package:bep/MainView/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
-
+import 'package:bep/ModalView/modalView.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class mainView extends StatefulWidget {
@@ -20,6 +20,7 @@ class _mainViewState extends State<mainView> {
   static final CameraPosition _kInitialPosition =
       CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
   late GoogleMapController _controller;
+
   bool _isQuizeOpen = false;
   Map<MarkerId, Marker> _markers = {};
 
@@ -49,6 +50,32 @@ class _mainViewState extends State<mainView> {
     });
   }
 
+  void _openModel(context) {
+    final _width = MediaQuery.of(context).size.width;
+
+    showModalBottomSheet(
+      context: this.context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(44.0),
+          topRight: Radius.circular(44.0),
+        ),
+      ),
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: modalView(_width, context),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +88,7 @@ class _mainViewState extends State<mainView> {
             markers: _markers.values.toSet(),
             onTap: (latLng) {
               _addMarker(latLng);
+              _openModel(context);
               print('$latLng');
             },
           ),
