@@ -1,13 +1,16 @@
+import 'package:bep/PopupView/popupView.dart';
 import 'package:flutter/material.dart';
 
 Widget donateBtn(context) {
   return Expanded(
     child: Align(
-      alignment: Alignment.bottomCenter, //하단 중앙에 정렬
+      alignment: Alignment.bottomCenter,
       child: Container(
         margin: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
         child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => popupView()),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Image.asset('assets/images/donation.png'),
               SizedBox(width: 8.0),
