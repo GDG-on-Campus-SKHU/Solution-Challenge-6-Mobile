@@ -11,24 +11,12 @@ Widget modalView(_width, context) {
     height: MediaQuery.of(context).size.height,
     child: Column(
       children: [
-        imageWidget(),
-        Stack(children: [
-          partWidget(),
-          quizeWidget(),
-          Padding(
-            padding: EdgeInsets.fromLTRB(16.0, 74.0, 16.0, 0.0),
-            child: Column(
-              children: [
-                answerWidget(),
-                Container(
-                  margin: EdgeInsets.only(top: 1.0),
-                  child: searchLinkWidget(),
-                ),
-              ],
-            ),
-          ),
-          donateBtn(context),
-        ]),
+        imageWidget(context),
+        partWidget(),
+        quizeWidget(),
+        answerWidget(),
+        searchLinkWidget(),
+        donateBtn(context),
       ],
     ),
   );

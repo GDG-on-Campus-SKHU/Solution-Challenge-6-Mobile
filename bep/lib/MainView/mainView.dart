@@ -56,6 +56,12 @@ class _mainViewState extends State<mainView> {
     showModalBottomSheet(
       context: this.context,
       isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(44.0),
+          topRight: Radius.circular(44.0),
+        ),
+      ),
       builder: (context) {
         return DraggableScrollableSheet(
           expand: false,
@@ -63,7 +69,7 @@ class _mainViewState extends State<mainView> {
             return SingleChildScrollView(
               controller: scrollController,
               child: modalView(_width, context),
-            ); //whatever you're returning, does not have to be a Container
+            );
           },
         );
       },
