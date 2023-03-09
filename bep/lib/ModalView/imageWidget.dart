@@ -8,15 +8,10 @@ Widget imageWidget(context) {
       topRight: Radius.circular(44.0),
     ),
     child: Stack(
+      alignment: Alignment.topCenter,
       children: [
         Image.asset('assets/images/LIFEBELOWWATER.png'),
-        Row(
-          children: [
-            Spacer(),
-            controller(),
-            Spacer(),
-          ],
-        ),
+        controller(),
       ],
     ),
   );
