@@ -105,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(16, 10, 0, 10),
                             child: Image.asset(
-                              "assets/images/google_logo.png",
+                              "assets/images/google-logo.png",
                               width: 35,
                               height: 35,
                             ),

@@ -10,7 +10,7 @@ Widget donateBtn(context) {
         child: ElevatedButton(
           onPressed: () => showDialog<String>(context: context, builder: (BuildContext context) => popupView()),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset('assets/images/donation.png'),
+            Container(width: 23, height: 30, child: Image.asset('assets/images/donation.png')),
             SizedBox(width: 8.0),
             Text('Donate', style: TextStyle(color: Colors.white, fontSize: 20)),
           ]),
