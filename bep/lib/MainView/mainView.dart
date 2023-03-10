@@ -1,7 +1,7 @@
 import 'package:bep/Api/quizeController.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
-import 'package:bep/MainView/userProfile.dart';
+import 'package:bep/MainView/TopNavbar/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
