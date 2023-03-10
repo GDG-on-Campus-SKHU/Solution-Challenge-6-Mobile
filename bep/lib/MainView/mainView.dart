@@ -29,7 +29,6 @@ class _mainViewState extends State<mainView> {
 
   initState() {
     super.initState();
-    print(quizes);
     _getQuize();
   }
 
@@ -37,8 +36,6 @@ class _mainViewState extends State<mainView> {
     final response = await quizeController.getQuize();
     setState(() {
       quizes = response!;
-
-      print(quizes);
     });
   }
 
@@ -105,7 +102,6 @@ class _mainViewState extends State<mainView> {
             onTap: (latLng) {
               _addMarker(latLng);
               _openModel(context);
-              print('$latLng');
             },
           ),
           SafeArea(
