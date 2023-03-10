@@ -88,7 +88,8 @@ class _quizeCardState extends State<quizeCard> {
                     padding: const EdgeInsets.all(5.0),
                     child: Image(
                       image: AssetImage(
-                          'assets/images/${quizeTypeToString(widget.type)}.png'),
+                        'assets/images/${quizeTypeToString(widget.type)}.png',
+                      ),
                     ),
                   ),
                 ),
