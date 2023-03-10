@@ -7,10 +7,12 @@ class LoginController {
   Dio dio = createDioClient();
 
   Future<googleLoginResponse?> googleLogin(GoogleSignInAccount user) async {
-    Map<String, String> userInfo = {};
-    userInfo['email'] = user.email;
-    userInfo['name'] = user.displayName ?? user.email;
-    userInfo['password'] = "google";
+    Map<String, String> userInfo = {
+      'email': user.email,
+      'name': user.displayName ?? user.email,
+      'password': "google",
+      'provider': "google",
+    };
 
     try {
       var response = await dio.post(
