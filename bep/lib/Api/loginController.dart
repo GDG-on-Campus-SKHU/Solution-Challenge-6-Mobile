@@ -20,7 +20,6 @@ class LoginController {
         data: userInfo,
         options: Options(contentType: Headers.jsonContentType),
       );
-      print(response.data);
       return googleLoginResponse(token: response.data['accessToken']);
     } catch (e) {
       print(e);

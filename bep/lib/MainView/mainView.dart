@@ -1,4 +1,5 @@
 import 'package:bep/Api/quizeController.dart';
+import 'package:bep/MainView/TopNavbar/topNavbar.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
 import 'package:bep/MainView/TopNavbar/userProfile.dart';
@@ -22,10 +23,10 @@ class _mainViewState extends State<mainView> {
 
   late GoogleMapController _controller;
 
-  bool _isQuizeOpen = false;
   Map<MarkerId, Marker> _markers = {};
   QuizeController quizeController = QuizeController();
   List<Quize> quizes = [];
+  bool _isQuizeOpen = false;
 
   initState() {
     super.initState();
@@ -107,7 +108,7 @@ class _mainViewState extends State<mainView> {
           SafeArea(
             child: Stack(
               children: [
-                userProfile(widget.googleUser.displayName.toString()[0]),
+                topNavbar(name: widget.googleUser.displayName.toString()[0]),
                 globalButton(
                   isQuizeOpen: _isQuizeOpen,
                   onToggleActive: (value) {

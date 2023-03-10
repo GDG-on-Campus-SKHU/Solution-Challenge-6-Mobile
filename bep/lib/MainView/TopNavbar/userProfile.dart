@@ -9,7 +9,7 @@ class userProfile extends StatelessWidget {
     return Container(
       alignment: Alignment.topRight,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
+        padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
         child: Container(
           width: 40,
           height: 40,
