@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bep/ModalView/modalView.dart';
+import 'package:bep/ModalView/ui/modalView.dart';
 
 void openModal(context, quizAnswer) {
   final _width = MediaQuery.of(context).size.width;

@@ -3,6 +3,7 @@ import 'package:bep/Api/mapController.dart';
 import 'package:bep/MainView/TopNavbar/topNavbar.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
+import 'package:bep/ModalView/logic/addMarker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
@@ -28,6 +29,8 @@ class _mainViewState extends State<mainView> {
   MapController mapController = MapController();
   List<Quize> quizes = [];
   bool _isQuizeOpen = false;
+  double _answerLatitude = 0.0;
+  double _answerLongitude = 0.0;
 
   initState() {
     super.initState();
@@ -49,11 +52,13 @@ class _mainViewState extends State<mainView> {
     _controller.setMapStyle(value);
   }
 
-  Future<void> onMapTap(LatLng latLng) async {
-    setState(() {
-      mapController.addMarker(_markers, latLng);
-    });
-  }
+  // Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
+  //   mapController.handleSelectedQuize(quize, _answerLatitude, _answerLongitude);
+  //   mapController.onMapTap(latLng, context);
+  //   setState(() {
+  //     addMarker(_markers, latLng);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +67,11 @@ class _mainViewState extends State<mainView> {
         children: [
           GoogleMap(
             initialCameraPosition: _kInitialPosition,
-            // onMapCreated: onMapCreated,
+            onMapCreated: onMapCreated,
             myLocationButtonEnabled: false,
             markers: _markers.values.toSet(),
             onTap: (latLng) {
-              mapController.onMapTap(latLng, context);
+              // _onCardSelected(quizes[0], latLng);
             },
           ),
           SafeArea(

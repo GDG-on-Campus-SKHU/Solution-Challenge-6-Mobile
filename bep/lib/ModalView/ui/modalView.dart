@@ -1,9 +1,9 @@
-import 'package:bep/ModalView/answerWidget.dart';
-import 'package:bep/ModalView/buttonWidget.dart';
-import 'package:bep/ModalView/imageWidget.dart';
-import 'package:bep/ModalView/partWidget.dart';
-import 'package:bep/ModalView/quizeWidget.dart';
-import 'package:bep/ModalView/searchLinkWidget.dart';
+import 'package:bep/ModalView/ui/buttonWidget.dart';
+import 'package:bep/ModalView/ui/imageWidget.dart';
+import 'package:bep/ModalView/ui/partWidget.dart';
+import 'package:bep/ModalView/ui/quizeWidget.dart';
+import 'package:bep/ModalView/ui/answerWidget.dart';
+import 'package:bep/ModalView/ui/searchLinkWidget.dart';
 
 import 'package:flutter/material.dart';
 

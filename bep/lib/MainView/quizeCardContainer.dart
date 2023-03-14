@@ -1,3 +1,4 @@
+import 'package:bep/Api/mapController.dart';
 import 'package:bep/Api/quizeController.dart';
 import 'package:bep/MainView/quizeCard.dart';
 import 'package:bep/Util/quizeType.dart';
@@ -14,7 +15,7 @@ class quizeCardContainer extends StatefulWidget {
 
 class _quizeCardContainerState extends State<quizeCardContainer> {
   late List<bool> _isSelectedList;
-
+  late List<Quize> quizes;
   @override
   void initState() {
     super.initState();
@@ -44,6 +45,7 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
       } else {
         _isSelectedList = List.generate(3, (_) => false);
         _isSelectedList[index] = true;
+        MapController.quize = [widget.quizes[index]];
       }
     });
   }

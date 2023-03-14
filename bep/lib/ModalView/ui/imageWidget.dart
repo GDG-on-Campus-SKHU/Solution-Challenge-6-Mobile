@@ -1,4 +1,4 @@
-import 'package:bep/ModalView/controller.dart';
+import 'package:bep/ModalView/ui/controller.dart';
 import 'package:flutter/material.dart';
 
 Widget imageWidget(context, imgUrl) {
