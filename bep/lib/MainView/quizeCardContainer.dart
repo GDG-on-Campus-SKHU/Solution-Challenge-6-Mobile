@@ -56,7 +56,9 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 76),
-          child: Column(mainAxisAlignment: MainAxisAlignment.end, children: quizeCardList()),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: quizeCardList()),
         ),
       ),
     );

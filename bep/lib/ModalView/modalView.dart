@@ -7,15 +7,15 @@ import 'package:bep/ModalView/searchLinkWidget.dart';
 
 import 'package:flutter/material.dart';
 
-Widget modalView(_width, context) {
+Widget modalView(_width, context, quizAnswer) {
   return Container(
     height: MediaQuery.of(context).size.height,
     child: Column(
       children: [
-        imageWidget(context),
-        partWidget(),
+        imageWidget(context, quizAnswer.imgUrl),
+        partWidget(quizAnswer.category),
         quizeWidget(),
-        answerWidget(),
+        answerWidget(quizAnswer.content),
         searchLinkWidget(),
         donateBtn(context),
       ],
