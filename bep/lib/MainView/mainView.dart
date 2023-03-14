@@ -36,6 +36,7 @@ class _mainViewState extends State<mainView> {
 
   Future<void> _getQuize() async {
     final response = await quizeController.getQuize();
+    print(response);
     setState(() {
       quizes = response!;
     });
@@ -65,7 +66,7 @@ class _mainViewState extends State<mainView> {
             myLocationButtonEnabled: false,
             markers: _markers.values.toSet(),
             onTap: (latLng) {
-              // mapController.onMapTap(latLng, context);
+              mapController.onMapTap(latLng, context);
             },
           ),
           SafeArea(
