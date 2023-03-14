@@ -6,27 +6,24 @@ class userProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topRight,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
-        child: Container(
-          width: 40,
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20.0),
-            ),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
+      child: Container(
+        width: 40,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
-          child: Text(
-            userName,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-            ),
+        ),
+        child: Text(
+          userName,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.normal,
           ),
         ),
       ),
