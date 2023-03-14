@@ -1,8 +1,8 @@
 import 'package:bep/Api/quizeController.dart';
 import 'package:bep/Api/mapController.dart';
+import 'package:bep/MainView/TopNavbar/topNavbar.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
-import 'package:bep/MainView/TopNavbar/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
@@ -23,11 +23,11 @@ class _mainViewState extends State<mainView> {
 
   late GoogleMapController _controller;
 
-  bool _isQuizeOpen = false;
   Map<MarkerId, Marker> _markers = {};
   QuizeController quizeController = QuizeController();
   MapController mapController = MapController();
   List<Quize> quizes = [];
+  bool _isQuizeOpen = false;
 
   initState() {
     super.initState();
@@ -61,7 +61,7 @@ class _mainViewState extends State<mainView> {
         children: [
           GoogleMap(
             initialCameraPosition: _kInitialPosition,
-            onMapCreated: onMapCreated,
+            // onMapCreated: onMapCreated,
             myLocationButtonEnabled: false,
             markers: _markers.values.toSet(),
             onTap: (latLng) {
@@ -71,7 +71,7 @@ class _mainViewState extends State<mainView> {
           SafeArea(
             child: Stack(
               children: [
-                userProfile(widget.googleUser.displayName.toString()[0]),
+                topNavbar(name: widget.googleUser.displayName.toString()[0]),
                 globalButton(
                   isQuizeOpen: _isQuizeOpen,
                   onToggleActive: (value) {
