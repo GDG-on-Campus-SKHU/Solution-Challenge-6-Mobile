@@ -12,7 +12,6 @@ class MapController {
   Dio dio = createDioClient();
   double closestDistance = double.infinity;
   static List<Quize> quize = [];
-  Quize quiz = quize[0];
 
   void handleSelectedQuize(Quize quiz, double latitude, double longitude) {
     double distance = distanceBetween(latitude, longitude,
@@ -25,17 +24,17 @@ class MapController {
   Future<List<Answer>?> onMapTap(
       LatLng tappedPosition, BuildContext context) async {
     // 사용자가 지도를 탭할 때마다 호출됩니다.
-    double tappedLatitude = tappedPosition.latitude;
-    double tappedLongitude = tappedPosition.longitude;
+    // double tappedLatitude = tappedPosition.latitude;
+    // double tappedLongitude = tappedPosition.longitude;
 
-    handleSelectedQuize(quiz, tappedLatitude, tappedLongitude);
+    // handleSelectedQuize(quiz, tappedLatitude, tappedLongitude);
     // answer 받아오기
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('accessToken');
       dio.options.headers['Authorization'] = 'Bearer $token'; // 인증 토큰 추가
 
-      var response = await dio.get('/main/${quiz.id}');
+      var response = await dio.get('/main/${quize.first.id}');
       final data = response.data;
 
       Answer quizAnswer = Answer.fromJson(data);

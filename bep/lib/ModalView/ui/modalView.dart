@@ -14,7 +14,7 @@ Widget modalView(_width, context, quizAnswer) {
       children: [
         imageWidget(context, quizAnswer.imgUrl),
         partWidget(quizAnswer.category),
-        quizeWidget(),
+        quizeWidget(quizAnswer.question),
         answerWidget(quizAnswer.content),
         searchLinkWidget(),
         donateBtn(context),

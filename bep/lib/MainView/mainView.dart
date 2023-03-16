@@ -29,8 +29,8 @@ class _mainViewState extends State<mainView> {
   MapController mapController = MapController();
   List<Quize> quizes = [];
   bool _isQuizeOpen = false;
-  double _answerLatitude = 0.0;
-  double _answerLongitude = 0.0;
+  // double _answerLatitude = 0.0;
+  // double _answerLongitude = 0.0;
 
   initState() {
     super.initState();
@@ -52,13 +52,14 @@ class _mainViewState extends State<mainView> {
     _controller.setMapStyle(value);
   }
 
-  // Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
-  //   mapController.handleSelectedQuize(quize, _answerLatitude, _answerLongitude);
-  //   mapController.onMapTap(latLng, context);
-  //   setState(() {
-  //     addMarker(_markers, latLng);
-  //   });
-  // }
+  Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
+    mapController.handleSelectedQuize(
+        quize, double.parse(quize.latitude), double.parse(quize.longitude));
+    mapController.onMapTap(latLng, context);
+    setState(() {
+      addMarker(_markers, latLng);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class _mainViewState extends State<mainView> {
             myLocationButtonEnabled: false,
             markers: _markers.values.toSet(),
             onTap: (latLng) {
-              // _onCardSelected(quizes[0], latLng);
+              _onCardSelected(quizes[0], latLng);
             },
           ),
           SafeArea(
