@@ -13,7 +13,8 @@ class QuizeController {
 
       final response = await dio.get('/main');
       List<dynamic> jsonList = response.data;
-      List<Quize> quizes = jsonList.map((json) => Quize.fromJson(json)).toList();
+      List<Quize> quizes =
+          jsonList.map((json) => Quize.fromJson(json)).toList();
       return quizes;
     } catch (e) {
       print(e);
