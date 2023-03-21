@@ -30,8 +30,6 @@ class _mainViewState extends State<mainView> {
   MapController mapController = MapController();
   List<Quize> quizes = [];
   bool _isQuizeOpen = false;
-  // double _answerLatitude = 0.0;
-  // double _answerLongitude = 0.0;
 
   initState() {
     super.initState();
@@ -55,8 +53,8 @@ class _mainViewState extends State<mainView> {
 
   Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
     print(quize.latitude);
-    handleSelectedQuize(
-        quize, double.parse(quize.latitude), double.parse(quize.longitude));
+    print(latLng.latitude);
+    handleSelectedQuize(quize, latLng.latitude, latLng.longitude);
     mapController.onMapTap(context);
     setState(() {
       addMarker(_markers, latLng);
