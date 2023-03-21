@@ -4,6 +4,7 @@ import 'package:bep/MainView/TopNavbar/topNavbar.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
 import 'package:bep/ModalView/logic/addMarker.dart';
+import 'package:bep/ModalView/logic/handleSelectedQuize.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
@@ -53,9 +54,10 @@ class _mainViewState extends State<mainView> {
   }
 
   Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
-    mapController.handleSelectedQuize(
+    print(quize.latitude);
+    handleSelectedQuize(
         quize, double.parse(quize.latitude), double.parse(quize.longitude));
-    mapController.onMapTap(latLng, context);
+    mapController.onMapTap(context);
     setState(() {
       addMarker(_markers, latLng);
     });

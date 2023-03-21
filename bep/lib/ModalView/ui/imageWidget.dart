@@ -10,7 +10,12 @@ Widget imageWidget(context, imgUrl) {
     child: Stack(
       alignment: Alignment.topCenter,
       children: [
-        Image.asset('${imgUrl}'),
+        Image.network(
+          '${imgUrl}',
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+          height: 240,
+        ),
         controller(),
       ],
     ),
