@@ -11,7 +11,7 @@ class LoginController {
       'email': user.email,
       'name': user.displayName ?? user.email,
       'password': "google",
-      'provider': "google",
+      'provider': "google 또는 bep",
     };
 
     try {
