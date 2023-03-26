@@ -5,12 +5,13 @@ void openModal(context, quizAnswer) {
   final _width = MediaQuery.of(context).size.width;
 
   showModalBottomSheet(
+    backgroundColor: Color.fromARGB(0, 0, 0, 0),
     context: context,
     isScrollControlled: true,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(44.0),
-        topRight: Radius.circular(44.0),
+        topLeft: Radius.circular(0.0),
+        topRight: Radius.circular(0.0),
       ),
     ),
     builder: (context) {

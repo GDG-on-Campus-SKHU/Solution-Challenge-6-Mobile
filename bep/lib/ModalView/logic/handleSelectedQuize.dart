@@ -11,11 +11,13 @@ void handleSelectedQuize(Quize quize, LatLng latLng, BuildContext context, int i
   MapController mapController = MapController();
   var distance =
       haversine(double.parse(quize.latitude), double.parse(quize.longitude), latLng.latitude, latLng.longitude);
-  print(distance);
-  if (distance < 100000) {
-    print("정답");
-    mapController.onMapTap(context, id);
-  }
+  // print(distance);
+  // if (distance < 100000) {
+  //   print("정답");
+  //   mapController.onMapTap(context, id);
+  // }
+
+  mapController.onMapTap(context, id);
 }
 
 double haversine(double lat1, double lon1, double lat2, double lon2) {

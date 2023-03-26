@@ -31,35 +31,32 @@ class _popupViewState extends State<popupView> {
         ),
         elevation: 4.0,
         title: titlePopup(),
-        content:
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-          TextButton(
-            onPressed: _decrementPoints,
-            child: const Text(
-              '-',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 40,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold),
+        content: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: TextButton(
+              onPressed: _decrementPoints,
+              child: const Text(
+                '-',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 40, color: Colors.grey, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
-          SizedBox(width: 40),
           Text(
             '$_points',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           ),
-          SizedBox(width: 40),
-          TextButton(
-            onPressed: _incrementPoints,
-            child: const Text(
-              '+',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 40,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: TextButton(
+              onPressed: _incrementPoints,
+              child: const Text(
+                '+',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 40, color: Colors.grey, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ]),
@@ -78,9 +75,7 @@ class _popupViewState extends State<popupView> {
                       'NO',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromRGBO(54, 123, 183, 1.0),
-                          fontWeight: FontWeight.bold),
+                          fontSize: 20, color: Color.fromRGBO(54, 123, 183, 1.0), fontWeight: FontWeight.bold),
                     ),
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -102,10 +97,7 @@ class _popupViewState extends State<popupView> {
                     child: const Text(
                       'YES',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     style: TextButton.styleFrom(
                       backgroundColor: Color.fromRGBO(54, 123, 183, 1.0),

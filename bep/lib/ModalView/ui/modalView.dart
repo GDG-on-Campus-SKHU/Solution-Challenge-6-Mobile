@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 Widget modalView(_width, context, quizAnswer) {
   return Container(
+    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(44)),
     height: MediaQuery.of(context).size.height,
     child: Column(
       children: [
