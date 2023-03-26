@@ -17,18 +17,24 @@ class _LoginViewState extends State<LoginView> {
   LoginPlatform _loginPlatform = LoginPlatform.none;
   GoogleSignInAccount? googleUser = null;
   LoginController loginController = LoginController();
+  bool isLoading = false;
 
   void signInWithGoogle() async {
+    setState(() {
+      isLoading = true;
+    });
     final prefs = await SharedPreferences.getInstance();
     try {
       googleUser = await GoogleSignIn().signIn();
-      googleLoginResponse? response =
-          await loginController.googleLogin(googleUser!);
+      googleLoginResponse? response = await loginController.googleLogin(googleUser!);
       prefs.setString('accessToken', response!.token!);
       setState(() {
         _loginPlatform = LoginPlatform.google;
       });
     } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
       print(e);
     }
   }
@@ -63,8 +69,7 @@ class _LoginViewState extends State<LoginView> {
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                     child: Text(
                       "BeP",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Image.asset(
@@ -81,54 +86,62 @@ class _LoginViewState extends State<LoginView> {
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      try {
-                        signInWithGoogle();
-                      } catch (e) {
-                        print("error $e");
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shadowColor: Color.fromRGBO(255, 255, 255, 0),
-                      backgroundColor: Colors.white,
-                      padding: EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: Colors.grey),
-                      ),
-                    ),
-                    child: Container(
-                      width: 300,
-                      height: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 10, 0, 10),
-                            child: Image.asset(
-                              "assets/images/google-logo.png",
-                              width: 35,
-                              height: 35,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(38, 0, 0, 0),
-                            child: Text(
-                              "Sign in with Google",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Color(0xFF777777),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
+                  LoginButton(isLoading, signInWithGoogle),
                 ],
               ),
       ),
     );
   }
+}
+
+Widget LoginButton(bool isLoading, void Function() signInWithGoogle) {
+  return ElevatedButton(
+    onPressed: isLoading
+        ? null
+        : () async {
+            try {
+              signInWithGoogle();
+            } catch (e) {
+              print("error $e");
+            }
+          },
+    style: ElevatedButton.styleFrom(
+      shadowColor: Color.fromRGBO(255, 255, 255, 0),
+      backgroundColor: Colors.white,
+      padding: EdgeInsets.all(0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: BorderSide(color: Colors.grey),
+      ),
+    ),
+    child: Container(
+      width: 300,
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 10, 0, 10),
+            child: Image.asset(
+              "assets/images/google-logo.png",
+              width: 35,
+              height: 35,
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(38, 0, 16, 0),
+            child: Text(
+              isLoading ? "Loading..." : "Sign in with Google",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xFF777777),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
