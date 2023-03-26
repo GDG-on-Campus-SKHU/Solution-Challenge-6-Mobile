@@ -1,4 +1,5 @@
 class googleLoginResponse {
   String? token = null;
-  googleLoginResponse({required this.token});
+  int userPoint = 0;
+  googleLoginResponse({required this.token, required this.userPoint});
 }

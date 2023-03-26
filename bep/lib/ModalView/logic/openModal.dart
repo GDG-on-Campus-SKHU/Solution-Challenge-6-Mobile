@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bep/ModalView/ui/modalView.dart';
 
-void openModal(context, quizAnswer) {
+void openModal(context, quizAnswer, Future<void> Function() getPoint) {
   final _width = MediaQuery.of(context).size.width;
 
   showModalBottomSheet(
@@ -20,7 +20,7 @@ void openModal(context, quizAnswer) {
         builder: (context, scrollController) {
           return SingleChildScrollView(
             controller: scrollController,
-            child: modalView(_width, context, quizAnswer),
+            child: modalView(_width, context, quizAnswer, getPoint),
           );
         },
       );

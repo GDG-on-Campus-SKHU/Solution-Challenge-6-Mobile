@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget quizeWidget(question) {
+Widget quizWidget(question) {
   return Container(
     alignment: Alignment.topLeft,
     child: Padding(

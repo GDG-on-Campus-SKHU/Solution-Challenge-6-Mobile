@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class globalButton extends StatelessWidget {
-  final bool isQuizeOpen;
+  final bool isQuizOpen;
   final ValueChanged<bool> onToggleActive;
 
   globalButton({
-    required this.isQuizeOpen,
+    required this.isQuizOpen,
     required this.onToggleActive,
   });
 
@@ -19,7 +19,7 @@ class globalButton extends StatelessWidget {
           iconSize: 40,
           icon: Image.asset('assets/images/global.gif'),
           onPressed: () {
-            onToggleActive(!isQuizeOpen);
+            onToggleActive(!isQuizOpen);
           },
         ),
       ),

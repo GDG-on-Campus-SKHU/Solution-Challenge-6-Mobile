@@ -1,22 +1,22 @@
-enum quizeType { Land, Water }
+enum quizType { Land, Water }
 
-String quizeTypeToString(quizeType type) {
+String quizTypeToString(quizType type) {
   switch (type) {
-    case quizeType.Land:
+    case quizType.Land:
       return "Land";
-    case quizeType.Water:
+    case quizType.Water:
       return "Water";
     default:
       throw Exception("Unknown quize type");
   }
 }
 
-quizeType stringToQuizeType(String str) {
+quizType stringToQuizType(String str) {
   switch (str) {
     case "Land":
-      return quizeType.Land;
+      return quizType.Land;
     case "Land":
-      return quizeType.Water;
+      return quizType.Water;
     default:
       throw Exception("Unknown type string $str");
   }

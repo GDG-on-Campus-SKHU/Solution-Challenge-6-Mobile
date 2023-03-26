@@ -1,14 +1,14 @@
-import 'package:bep/Util/quizeType.dart';
+import 'package:bep/Util/quizType.dart';
 import 'package:flutter/material.dart';
 
-class quizeCard extends StatefulWidget {
+class quizCard extends StatefulWidget {
   final int index;
   final List<bool> selectedList;
-  final quizeType type;
+  final quizType type;
   final String question;
   final ValueChanged<int> onSelected;
 
-  quizeCard({
+  quizCard({
     required this.index,
     required this.selectedList,
     required this.type,
@@ -17,10 +17,10 @@ class quizeCard extends StatefulWidget {
   });
 
   @override
-  State<quizeCard> createState() => _quizeCardState();
+  State<quizCard> createState() => _quizCardState();
 }
 
-class _quizeCardState extends State<quizeCard> {
+class _quizCardState extends State<quizCard> {
   Color selected = Color.fromRGBO(0, 0, 0, 0.25);
 
   @override
@@ -88,7 +88,7 @@ class _quizeCardState extends State<quizeCard> {
                     padding: const EdgeInsets.all(5.0),
                     child: Image(
                       image: AssetImage(
-                        'assets/images/${quizeTypeToString(widget.type)}.png',
+                        'assets/images/${quizTypeToString(widget.type)}.png',
                       ),
                     ),
                   ),

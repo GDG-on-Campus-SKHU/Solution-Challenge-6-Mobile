@@ -2,10 +2,10 @@ import 'package:bep/Api/dioSetting.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class QuizeController {
+class QuizController {
   Dio dio = createDioClient();
 
-  Future<List<Quize>?> getQuize() async {
+  Future<List<Quiz>?> getQuiz() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('accessToken');
@@ -13,8 +13,7 @@ class QuizeController {
 
       final response = await dio.get('/main');
       List<dynamic> jsonList = response.data;
-      List<Quize> quizes =
-          jsonList.map((json) => Quize.fromJson(json)).toList();
+      List<Quiz> quizes = jsonList.map((json) => Quiz.fromJson(json)).toList();
       return quizes;
     } catch (e) {
       print(e);
@@ -23,7 +22,7 @@ class QuizeController {
   }
 }
 
-class Quize {
+class Quiz {
   final int id;
   final String question;
   final String category;
@@ -31,7 +30,7 @@ class Quize {
   final String longitude;
   final int miPoint;
 
-  Quize(
+  Quiz(
       {required this.id,
       required this.question,
       required this.category,
@@ -39,8 +38,8 @@ class Quize {
       required this.longitude,
       required this.miPoint});
 
-  factory Quize.fromJson(Map<String, dynamic> json) {
-    return Quize(
+  factory Quiz.fromJson(Map<String, dynamic> json) {
+    return Quiz(
         id: json['id'],
         question: json['question'],
         category: json['category'],

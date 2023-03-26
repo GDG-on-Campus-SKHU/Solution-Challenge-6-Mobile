@@ -17,6 +17,7 @@ class _LoginViewState extends State<LoginView> {
   LoginPlatform _loginPlatform = LoginPlatform.none;
   GoogleSignInAccount? googleUser = null;
   LoginController loginController = LoginController();
+  googleLoginResponse? response;
   bool isLoading = false;
 
   void signInWithGoogle() async {
@@ -26,8 +27,9 @@ class _LoginViewState extends State<LoginView> {
     final prefs = await SharedPreferences.getInstance();
     try {
       googleUser = await GoogleSignIn().signIn();
-      googleLoginResponse? response = await loginController.googleLogin(googleUser!);
+      response = await loginController.googleLogin(googleUser!);
       prefs.setString('accessToken', response!.token!);
+      prefs.setInt('userPoint', response!.userPoint);
       setState(() {
         _loginPlatform = LoginPlatform.google;
       });
@@ -61,7 +63,10 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       body: Center(
         child: _loginPlatform != LoginPlatform.none
-            ? mainView(googleUser: googleUser!)
+            ? mainView(
+                googleUser: googleUser!,
+                response: response!,
+              )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

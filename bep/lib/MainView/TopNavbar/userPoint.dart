@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class userPoint extends StatelessWidget {
+  final int point;
+  userPoint({required this.point});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,7 +40,7 @@ class userPoint extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 4, 8, 0),
               child: Text(
-                '1000p',
+                point.toString(),
                 style: TextStyle(
                   fontSize: 16,
                 ),
