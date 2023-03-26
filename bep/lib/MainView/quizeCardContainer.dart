@@ -5,8 +5,9 @@ import 'package:bep/Util/quizeType.dart';
 import 'package:flutter/material.dart';
 
 class quizeCardContainer extends StatefulWidget {
-  quizeCardContainer({required this.isQuizeOpen, required this.quizes});
+  quizeCardContainer({required this.isQuizeOpen, required this.updateSelectedId, required this.quizes});
   final bool isQuizeOpen;
+  final Function(int) updateSelectedId;
   final List<Quize> quizes;
 
   @override
@@ -42,7 +43,9 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
     setState(() {
       if (_isSelectedList[index]) {
         _isSelectedList = List.generate(3, (_) => false);
+        widget.updateSelectedId(-1);
       } else {
+        widget.updateSelectedId(index);
         _isSelectedList = List.generate(3, (_) => false);
         _isSelectedList[index] = true;
         MapController.quize = [widget.quizes[index]];
@@ -58,9 +61,7 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 76),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: quizeCardList()),
+          child: Column(mainAxisAlignment: MainAxisAlignment.end, children: quizeCardList()),
         ),
       ),
     );

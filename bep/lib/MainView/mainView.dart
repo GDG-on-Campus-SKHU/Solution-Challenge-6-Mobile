@@ -23,11 +23,10 @@ class _mainViewState extends State<mainView> {
     southwest: LatLng(37.433877, 126.711254),
     northeast: LatLng(37.542186, 126.855916),
   );
-  static final CameraPosition _kInitialPosition =
-      CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
+  static final CameraPosition _kInitialPosition = CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
 
   late GoogleMapController _controller;
-
+  int selectedId = -1;
   Map<MarkerId, Marker> _markers = {};
   QuizeController quizeController = QuizeController();
 
@@ -37,6 +36,13 @@ class _mainViewState extends State<mainView> {
   initState() {
     super.initState();
     _getQuize();
+  }
+
+  void _updateSelectedId(int id) {
+    setState(() {
+      selectedId = id;
+      print(selectedId);
+    });
   }
 
   Future<void> _getQuize() async {
@@ -49,15 +55,12 @@ class _mainViewState extends State<mainView> {
 
   Future<void> onMapCreated(GoogleMapController controller) async {
     _controller = controller;
-    String value = await DefaultAssetBundle.of(context)
-        .loadString('assets/map_style.json');
-    _controller.setMapStyle(value);
     _controller.animateCamera(CameraUpdate.newLatLngBounds(_kMapBounds, 0));
   }
 
   Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
-    final LatLngBounds bounds = await _controller.getVisibleRegion();
-    handleSelectedQuize(bounds, quize, latLng, context);
+    print(quize.question);
+    handleSelectedQuize(quize, latLng, context);
     setState(() {
       addMarker(_markers, latLng);
     });
@@ -74,7 +77,7 @@ class _mainViewState extends State<mainView> {
             myLocationButtonEnabled: false,
             markers: _markers.values.toSet(),
             onTap: (latLng) {
-              _onCardSelected(quizes[0], latLng);
+              selectedId >= 0 ? _onCardSelected(quizes[selectedId], latLng) : null;
             },
           ),
           SafeArea(
@@ -90,6 +93,7 @@ class _mainViewState extends State<mainView> {
                   },
                 ),
                 quizeCardContainer(
+                  updateSelectedId: _updateSelectedId,
                   isQuizeOpen: _isQuizeOpen,
                   quizes: quizes,
                 ),
