@@ -1,5 +1,4 @@
 import 'package:bep/Api/quizeController.dart';
-import 'package:bep/Api/mapController.dart';
 import 'package:bep/MainView/TopNavbar/topNavbar.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
@@ -20,6 +19,10 @@ class mainView extends StatefulWidget {
 
 class _mainViewState extends State<mainView> {
   static final LatLng _kMapCenter = LatLng(37.485172, 126.783173);
+  static final LatLngBounds _kMapBounds = LatLngBounds(
+    southwest: LatLng(37.433877, 126.711254),
+    northeast: LatLng(37.542186, 126.855916),
+  );
   static final CameraPosition _kInitialPosition =
       CameraPosition(target: _kMapCenter, zoom: 10.0, tilt: 0, bearing: 0);
 
@@ -27,7 +30,7 @@ class _mainViewState extends State<mainView> {
 
   Map<MarkerId, Marker> _markers = {};
   QuizeController quizeController = QuizeController();
-  MapController mapController = MapController();
+
   List<Quize> quizes = [];
   bool _isQuizeOpen = false;
 
@@ -49,13 +52,12 @@ class _mainViewState extends State<mainView> {
     String value = await DefaultAssetBundle.of(context)
         .loadString('assets/map_style.json');
     _controller.setMapStyle(value);
+    _controller.animateCamera(CameraUpdate.newLatLngBounds(_kMapBounds, 0));
   }
 
   Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
-    print(quize.latitude);
-    print(latLng.latitude);
-    handleSelectedQuize(quize, latLng.latitude, latLng.longitude);
-    mapController.onMapTap(context);
+    final LatLngBounds bounds = await _controller.getVisibleRegion();
+    handleSelectedQuize(bounds, quize, latLng, context);
     setState(() {
       addMarker(_markers, latLng);
     });
