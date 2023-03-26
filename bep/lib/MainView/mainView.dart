@@ -41,13 +41,11 @@ class _mainViewState extends State<mainView> {
   void _updateSelectedId(int id) {
     setState(() {
       selectedId = id;
-      print(selectedId);
     });
   }
 
   Future<void> _getQuize() async {
     final response = await quizeController.getQuize();
-    print(response);
     setState(() {
       quizes = response!;
     });
@@ -59,8 +57,9 @@ class _mainViewState extends State<mainView> {
   }
 
   Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
-    print(quize.question);
-    handleSelectedQuize(quize, latLng, context);
+    handleSelectedQuize(quize, latLng, context, quizes[selectedId].id);
+
+    print(quizes[selectedId].question);
     setState(() {
       addMarker(_markers, latLng);
     });

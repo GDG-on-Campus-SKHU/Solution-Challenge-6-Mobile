@@ -8,16 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MapController {
   Dio dio = createDioClient();
-  static List<Quize> quize = [];
 
-  Future<List<Answer>?> onMapTap(BuildContext context) async {
+  Future<List<Answer>?> onMapTap(BuildContext context, int id) async {
     // answer 받아오기
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('accessToken');
       dio.options.headers['Authorization'] = 'Bearer $token'; // 인증 토큰 추가
 
-      var response = await dio.get('/main/${quize.first.id}');
+      var response = await dio.get('/main/${id.toString()}');
       final data = response.data;
 
       Answer quizAnswer = Answer.fromJson(data);

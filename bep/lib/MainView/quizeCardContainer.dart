@@ -1,4 +1,3 @@
-import 'package:bep/Api/mapController.dart';
 import 'package:bep/Api/quizeController.dart';
 import 'package:bep/MainView/quizeCard.dart';
 import 'package:bep/Util/quizeType.dart';
@@ -45,10 +44,9 @@ class _quizeCardContainerState extends State<quizeCardContainer> {
         _isSelectedList = List.generate(3, (_) => false);
         widget.updateSelectedId(-1);
       } else {
-        widget.updateSelectedId(index);
         _isSelectedList = List.generate(3, (_) => false);
         _isSelectedList[index] = true;
-        MapController.quize = [widget.quizes[index]];
+        widget.updateSelectedId(index);
       }
     });
   }

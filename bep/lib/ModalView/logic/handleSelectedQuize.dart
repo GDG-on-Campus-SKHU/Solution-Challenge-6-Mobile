@@ -7,13 +7,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const earthRadius = 6371.0; // 지구 반지름(km)
 
-void handleSelectedQuize(Quize quize, LatLng latLng, BuildContext context) {
+void handleSelectedQuize(Quize quize, LatLng latLng, BuildContext context, int id) {
   MapController mapController = MapController();
   var distance =
       haversine(double.parse(quize.latitude), double.parse(quize.longitude), latLng.latitude, latLng.longitude);
   print(distance);
-  if (distance < 3.5) {
-    mapController.onMapTap(context);
+  if (distance < 100000) {
+    print("정답");
+    mapController.onMapTap(context, id);
   }
 }
 

@@ -3,7 +3,7 @@ class Answer {
   final String category;
   final String content;
   final String imgUrl;
-  final String userPoint;
+  final int userPoint;
 
   Answer(
       {required this.question,

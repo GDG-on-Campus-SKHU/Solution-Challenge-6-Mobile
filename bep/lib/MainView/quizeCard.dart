@@ -43,7 +43,7 @@ class _quizeCardState extends State<quizeCard> {
             BoxShadow(
               color: !widget.selectedList[widget.index]
                   ? Color.fromRGBO(0, 0, 0, 0.25)
-                  : Color.fromRGBO(255, 141, 25, 0.25),
+                  : Color.fromRGBO(0, 21, 255, 0.685),
               offset: Offset.zero,
               blurRadius: 5,
             )
@@ -77,7 +77,7 @@ class _quizeCardState extends State<quizeCard> {
                       BoxShadow(
                         color: !widget.selectedList[widget.index]
                             ? Color.fromRGBO(0, 0, 0, 0.25)
-                            : Color.fromRGBO(255, 141, 25, 0.25),
+                            : Color.fromRGBO(0, 21, 255, 0.685),
                         blurRadius: 4,
                         offset: Offset.zero,
                       )
