@@ -73,7 +73,7 @@ class _mainViewState extends State<mainView> {
   Future<void> _onCardSelected(Quiz quize, LatLng latLng) async {
     var isAnswerCorrect = await handleSelectedQuiz(quize, latLng, context, quizes[selectedId].id, _getPoint);
 
-    if (isAnswerCorrect) {
+    if (isAnswerCorrect != null) {
       _getQuiz();
       _updateSelectedId(-1);
     }
