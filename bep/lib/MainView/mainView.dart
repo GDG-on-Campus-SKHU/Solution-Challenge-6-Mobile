@@ -1,5 +1,4 @@
 import 'package:bep/Api/quizeController.dart';
-import 'package:bep/Api/mapController.dart';
 import 'package:bep/MainView/TopNavbar/topNavbar.dart';
 import 'package:bep/MainView/globalButton.dart';
 import 'package:bep/MainView/quizeCardContainer.dart';
@@ -31,7 +30,7 @@ class _mainViewState extends State<mainView> {
 
   Map<MarkerId, Marker> _markers = {};
   QuizeController quizeController = QuizeController();
-  MapController mapController = MapController();
+
   List<Quize> quizes = [];
   bool _isQuizeOpen = false;
 
@@ -58,8 +57,7 @@ class _mainViewState extends State<mainView> {
 
   Future<void> _onCardSelected(Quize quize, LatLng latLng) async {
     final LatLngBounds bounds = await _controller.getVisibleRegion();
-    mapController.onMapTap(context);
-    handleSelectedQuize(bounds, quize, latLng);
+    handleSelectedQuize(bounds, quize, latLng, context);
     setState(() {
       addMarker(_markers, latLng);
     });

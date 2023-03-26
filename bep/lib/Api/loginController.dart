@@ -11,7 +11,7 @@ class LoginController {
       'email': user.email,
       'name': user.displayName ?? user.email,
       'password': "google",
-      'provider': "google 또는 bep",
+      'provider': "google",
     };
 
     try {
@@ -21,8 +21,15 @@ class LoginController {
         options: Options(contentType: Headers.jsonContentType),
       );
       return googleLoginResponse(token: response.data['accessToken']);
-    } catch (e) {
-      print(e);
+      // } catch (e) {
+      //   print(e);
+      // }
+    } on DioError catch (e) {
+      if (e.response == null) {
+        print('DioError: $e');
+      } else {
+        print('DioError: ${e.response!.statusCode}');
+      }
     }
     return null;
   }
