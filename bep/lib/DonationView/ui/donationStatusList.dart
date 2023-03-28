@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DonationStatusList extends StatelessWidget {
   DonationStatusList({required this.categoriesState, required this.colors});
   final List<CategoryState> categoriesState;
-  final List<Color> colors;
+  final Map<String, Color> colors;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +29,7 @@ class DonationStatusList extends StatelessWidget {
                       width: 20,
                       height: 20,
                       decoration: BoxDecoration(
-                        color: colors[index],
+                        color: colors[categoriesState[index].category],
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                     ),

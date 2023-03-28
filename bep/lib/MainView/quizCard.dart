@@ -7,6 +7,7 @@ class quizCard extends StatefulWidget {
   final quizType type;
   final String question;
   final ValueChanged<int> onSelected;
+  final int mPoint;
 
   quizCard({
     required this.index,
@@ -14,6 +15,7 @@ class quizCard extends StatefulWidget {
     required this.type,
     required this.question,
     required this.onSelected,
+    required this.mPoint,
   });
 
   @override
@@ -41,9 +43,7 @@ class _quizCardState extends State<quizCard> {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: !widget.selectedList[widget.index]
-                  ? Color.fromRGBO(0, 0, 0, 0.25)
-                  : Color.fromRGBO(0, 21, 255, 0.685),
+              color: Color.fromRGBO(0, 0, 0, 0.25),
               offset: Offset.zero,
               blurRadius: 5,
             )
@@ -61,6 +61,9 @@ class _quizCardState extends State<quizCard> {
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
+              side: widget.selectedList[widget.index]
+                  ? BorderSide(color: Color.fromARGB(172, 0, 115, 255), width: 2)
+                  : BorderSide.none,
             ),
           ),
           child: Row(
@@ -71,13 +74,12 @@ class _quizCardState extends State<quizCard> {
                 child: Container(
                   width: 35,
                   height: 35,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: !widget.selectedList[widget.index]
-                            ? Color.fromRGBO(0, 0, 0, 0.25)
-                            : Color.fromRGBO(0, 21, 255, 0.685),
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
                         blurRadius: 4,
                         offset: Offset.zero,
                       )
@@ -86,11 +88,16 @@ class _quizCardState extends State<quizCard> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Image(
-                      image: AssetImage(
-                        'assets/images/${quizTypeToString(widget.type)}.png',
-                      ),
-                    ),
+                    child: !widget.selectedList[widget.index]
+                        ? Image(
+                            image: AssetImage(
+                              'assets/images/${quizTypeToString(widget.type)}.png',
+                            ),
+                          )
+                        : Text(
+                            widget.mPoint.toString(),
+                            textAlign: TextAlign.center,
+                          ),
                   ),
                 ),
               ),

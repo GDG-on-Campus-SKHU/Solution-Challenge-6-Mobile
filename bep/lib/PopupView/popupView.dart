@@ -22,7 +22,9 @@ class _popupViewState extends State<popupView> {
 
   void _decrementPoints() {
     setState(() {
-      _points -= 10;
+      if (_points > 10) {
+        _points -= 10;
+      }
     });
   }
 

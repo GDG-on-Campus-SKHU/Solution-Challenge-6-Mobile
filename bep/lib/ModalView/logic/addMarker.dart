@@ -7,10 +7,7 @@ void addMarker(Map<MarkerId, Marker> markers, LatLng latLng) {
   final Marker marker = Marker(
     markerId: markerId,
     position: latLng,
-    infoWindow: InfoWindow(
-      title: '마커 타이틀',
-      snippet: '마커 스니펫',
-    ),
+    infoWindow: InfoWindow(),
     icon: BitmapDescriptor.defaultMarker,
   );
 

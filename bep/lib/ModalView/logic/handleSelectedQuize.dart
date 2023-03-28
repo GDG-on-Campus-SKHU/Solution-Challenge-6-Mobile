@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bep/Api/mapController.dart';
 import 'package:bep/Api/quizeController.dart';
+import 'package:bep/Util/toastMessage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -13,7 +14,10 @@ Future<bool>? handleSelectedQuiz(
   var distance =
       haversine(double.parse(quiz.latitude), double.parse(quiz.longitude), latLng.latitude, latLng.longitude);
   if (distance < 100000) {
+    showRightAnswer();
     return mapController.onMapTap(context, id, getPoint);
+  } else {
+    showWrongAnswer();
   }
   return null;
 }

@@ -1,4 +1,5 @@
 import 'package:bep/Api/dioSetting.dart';
+import 'package:bep/Util/toastMessage.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,6 +28,7 @@ class DonationController {
       return mPoint;
     } catch (e) {
       print(e);
+      showMoneyNotEnough();
       return -1;
     }
   }

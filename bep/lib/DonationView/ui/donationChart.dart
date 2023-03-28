@@ -1,10 +1,12 @@
+import 'package:bep/Api/donationController.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import './badgeWidget.dart';
 
 class donationChart extends StatefulWidget {
-  donationChart({required this.colors, required this.categoryRate});
-  final List<Color> colors;
+  donationChart({required this.categoryState, required this.colors, required this.categoryRate});
+  final List<CategoryState> categoryState;
+  final Map<String, Color> colors;
   final List<double> categoryRate;
 
   @override
@@ -62,7 +64,7 @@ class donationChartState extends State<donationChart> {
         const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
         return PieChartSectionData(
-          color: widget.colors[i],
+          color: widget.colors[widget.categoryState[i].category],
           value: widget.categoryRate[i],
           title: '${widget.categoryRate[i].toInt()}%',
           radius: radius,
@@ -73,6 +75,7 @@ class donationChartState extends State<donationChart> {
             shadows: shadows,
           ),
           badgeWidget: BadgeWidget(
+            image: widget.categoryState[i].category,
             size: widgetSize,
             borderColor: AppColors.contentColorBlack,
           ),

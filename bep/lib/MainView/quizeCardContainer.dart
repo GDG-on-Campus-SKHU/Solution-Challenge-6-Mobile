@@ -39,9 +39,11 @@ class _quizCardContainerState extends State<quizCardContainer> {
         quizCard(
           index: i,
           selectedList: _isSelectedList,
-          type: quizType.Land,
+          type: stringToQuizType(widget.quizes[i].category),
+          // type: quizType.Land,
           question: widget.quizes[i].question,
           onSelected: _onSelect,
+          mPoint: widget.quizes[i].miPoint,
         ),
       );
     }
