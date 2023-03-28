@@ -4,12 +4,12 @@ import 'package:bep/DonationView/ui/donationStatusList.dart';
 import '../../DonationView/ui/donationChart.dart';
 import 'package:flutter/material.dart';
 
-const colors = [
-  AppColors.contentColorBlue,
-  AppColors.contentColorYellow,
-  AppColors.contentColorPurple,
-  AppColors.contentColorGreen
-];
+Map<String, Color> colors = {
+  "Life on Land": Color.fromRGBO(86, 192, 43, 1),
+  "Other": Color.fromARGB(255, 33, 33, 33),
+  "Life Below Water": Color.fromRGBO(10, 151, 217, 1),
+  "Climate Action": Color.fromRGBO(63, 126, 68, 1),
+};
 
 class DonationStatus extends StatefulWidget {
   @override
@@ -48,6 +48,7 @@ class _DonationStatusState extends State<DonationStatus> {
       body: Column(
         children: [
           donationChart(
+            categoryState: categoriesState,
             colors: colors,
             categoryRate: categoryRate,
           ),

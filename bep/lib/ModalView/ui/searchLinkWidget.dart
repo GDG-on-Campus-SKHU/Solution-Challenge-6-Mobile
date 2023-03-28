@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Widget searchLinkWidget() {
+Widget searchLinkWidget(String query) {
   return Container(
     alignment: Alignment.topLeft,
     child: Padding(
       padding: EdgeInsets.fromLTRB(16.0, 1.0, 0, 0),
       child: InkWell(
         onTap: () async {
-          String query = 'france';
           Uri uri = Uri.parse('https://www.google.com/search?q=$query');
           if (await canLaunchUrl(uri)) {
             await launchUrl(uri);

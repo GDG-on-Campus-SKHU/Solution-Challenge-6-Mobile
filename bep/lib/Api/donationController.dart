@@ -1,15 +1,43 @@
 import 'package:bep/Api/dioSetting.dart';
+import 'package:bep/Util/toastMessage.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DonationController {
   Dio dio = createDioClient();
 
+  Future<int> donateToCategory(String category, int point, Future<void> Function() getPoint) async {
+    Map<String, dynamic> request = {
+      'category': category,
+      'donationPoint': point,
+    };
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('accessToken');
+      dio.options.headers['Authorization'] = 'Bearer $token';
+
+      var response = await dio.post(
+        '/main/donations',
+        data: request,
+        options: Options(contentType: Headers.jsonContentType),
+      );
+
+      int mPoint = int.parse(response.toString());
+      prefs.setInt('userPoint', mPoint);
+      getPoint();
+      return mPoint;
+    } catch (e) {
+      print(e);
+      showMoneyNotEnough();
+      return -1;
+    }
+  }
+
   Future<List<CategoryState>?> getDonationStatus() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('accessToken');
-      dio.options.headers['Authorization'] = 'Bearer $token'; // 인증 토큰 추가
+      dio.options.headers['Authorization'] = 'Bearer $token';
 
       var response = await dio.get('/main/donations/categories');
       List<dynamic> jsonList = response.data;

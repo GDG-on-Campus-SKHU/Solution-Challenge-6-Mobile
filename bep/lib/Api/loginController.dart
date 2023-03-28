@@ -20,9 +20,13 @@ class LoginController {
         data: userInfo,
         options: Options(contentType: Headers.jsonContentType),
       );
-      return googleLoginResponse(token: response.data['accessToken']);
-    } catch (e) {
-      print(e);
+      return googleLoginResponse(token: response.data['accessToken'], userPoint: response.data['userPoint']);
+    } on DioError catch (e) {
+      if (e.response == null) {
+        print('DioError: $e');
+      } else {
+        print('DioError: ${e.response!.statusCode}');
+      }
     }
     return null;
   }

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:bep/ModalView/ui/modalView.dart';
 
-void openModal(context, quizAnswer) {
+void openModal(context, quizAnswer, Future<void> Function() getPoint) {
   final _width = MediaQuery.of(context).size.width;
 
   showModalBottomSheet(
+    backgroundColor: Color.fromARGB(0, 0, 0, 0),
     context: context,
     isScrollControlled: true,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(44.0),
-        topRight: Radius.circular(44.0),
+        topLeft: Radius.circular(0.0),
+        topRight: Radius.circular(0.0),
       ),
     ),
     builder: (context) {
@@ -19,7 +20,7 @@ void openModal(context, quizAnswer) {
         builder: (context, scrollController) {
           return SingleChildScrollView(
             controller: scrollController,
-            child: modalView(_width, context, quizAnswer),
+            child: modalView(_width, context, quizAnswer, getPoint),
           );
         },
       );

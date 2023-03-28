@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class topNavbar extends StatelessWidget {
   final String name;
-  const topNavbar({super.key, required this.name});
+  final int point;
+  const topNavbar({super.key, required this.name, required this.point});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class topNavbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          userPoint(),
+          userPoint(point: point),
           Spacer(),
           menu(),
           userProfile(name),

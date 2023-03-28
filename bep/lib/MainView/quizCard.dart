@@ -1,26 +1,28 @@
-import 'package:bep/Util/quizeType.dart';
+import 'package:bep/Util/quizType.dart';
 import 'package:flutter/material.dart';
 
-class quizeCard extends StatefulWidget {
+class quizCard extends StatefulWidget {
   final int index;
   final List<bool> selectedList;
-  final quizeType type;
+  final quizType type;
   final String question;
   final ValueChanged<int> onSelected;
+  final int mPoint;
 
-  quizeCard({
+  quizCard({
     required this.index,
     required this.selectedList,
     required this.type,
     required this.question,
     required this.onSelected,
+    required this.mPoint,
   });
 
   @override
-  State<quizeCard> createState() => _quizeCardState();
+  State<quizCard> createState() => _quizCardState();
 }
 
-class _quizeCardState extends State<quizeCard> {
+class _quizCardState extends State<quizCard> {
   Color selected = Color.fromRGBO(0, 0, 0, 0.25);
 
   @override
@@ -41,9 +43,7 @@ class _quizeCardState extends State<quizeCard> {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: !widget.selectedList[widget.index]
-                  ? Color.fromRGBO(0, 0, 0, 0.25)
-                  : Color.fromRGBO(255, 141, 25, 0.25),
+              color: Color.fromRGBO(0, 0, 0, 0.25),
               offset: Offset.zero,
               blurRadius: 5,
             )
@@ -61,6 +61,9 @@ class _quizeCardState extends State<quizeCard> {
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
+              side: widget.selectedList[widget.index]
+                  ? BorderSide(color: Color.fromARGB(172, 0, 115, 255), width: 2)
+                  : BorderSide.none,
             ),
           ),
           child: Row(
@@ -71,13 +74,12 @@ class _quizeCardState extends State<quizeCard> {
                 child: Container(
                   width: 35,
                   height: 35,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: !widget.selectedList[widget.index]
-                            ? Color.fromRGBO(0, 0, 0, 0.25)
-                            : Color.fromRGBO(255, 141, 25, 0.25),
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
                         blurRadius: 4,
                         offset: Offset.zero,
                       )
@@ -86,11 +88,16 @@ class _quizeCardState extends State<quizeCard> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Image(
-                      image: AssetImage(
-                        'assets/images/${quizeTypeToString(widget.type)}.png',
-                      ),
-                    ),
+                    child: !widget.selectedList[widget.index]
+                        ? Image(
+                            image: AssetImage(
+                              'assets/images/${quizTypeToString(widget.type)}.png',
+                            ),
+                          )
+                        : Text(
+                            widget.mPoint.toString(),
+                            textAlign: TextAlign.center,
+                          ),
                   ),
                 ),
               ),
