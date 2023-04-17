@@ -133,6 +133,11 @@ width:80%;margin:0 auto">
 <p style = "font-size:16px">Contributions are welcome! Please use GitHub issues to submit bug reports, feature requests, or other ideas. Simply create a new issue in our repository and provide clear instructions for how others can contribute. Our team will review all issues and work with contributors to merge changes into our codebase.<p>
 <br />
 
+# Project Link
+Server: https://github.com/GDSC-SKHU/BeP-6-Server
+  
+Web: https://github.com/GDSC-SKHU/BeP_web
+
 # 👩🏻‍💻 Team of BeP
 
 |                                주동석                                 |                               김하은                               |                               이지선                               |                               김효중                               |
