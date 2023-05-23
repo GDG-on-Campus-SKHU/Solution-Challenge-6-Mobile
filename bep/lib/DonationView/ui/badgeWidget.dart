@@ -3,7 +3,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class BadgeWidget extends StatelessWidget {
-  const BadgeWidget({required this.image, required this.size, required this.borderColor});
+  const BadgeWidget(
+      {required this.image, required this.size, required this.borderColor});
   final String image;
   final double size;
   final Color borderColor;
@@ -31,7 +32,8 @@ class BadgeWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.all(size * .15),
       child: Center(
-        child: Image.asset('assets/images/${quizTypeToString(stringToQuizType(image))}.png'),
+        child: Image.asset(
+            'assets/images/${quizTypeToString(stringToQuizType(image))}.png'),
       ),
     );
   }
