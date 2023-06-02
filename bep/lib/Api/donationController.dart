@@ -6,8 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DonationController {
   Dio dio = createDioClient();
 
-  Future<int> donateToCategory(int id, String category, int point,
-      Future<void> Function() getPoint) async {
+  Future<int> donateToCategory(int id, String category, int point, Future<void> Function() getPoint) async {
     Map<String, dynamic> request = {
       'id': id,
       'category': category,
@@ -41,10 +40,9 @@ class DonationController {
       final token = prefs.getString('accessToken');
       dio.options.headers['Authorization'] = 'Bearer $token';
 
-      var response = await dio.get('/main/donations/');
+      var response = await dio.get('/main/donations');
       List<dynamic> jsonList = response.data;
-      List<CategoryState> categoriesState =
-          jsonList.map((json) => CategoryState.fromJson(json)).toList();
+      List<CategoryState> categoriesState = jsonList.map((json) => CategoryState.fromJson(json)).toList();
       return categoriesState;
     } catch (e) {
       print(e);
