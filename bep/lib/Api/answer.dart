@@ -1,4 +1,5 @@
 class Answer {
+  final int id;
   final String question;
   final String category;
   final String content;
@@ -6,7 +7,8 @@ class Answer {
   final int userPoint;
 
   Answer(
-      {required this.question,
+      {required this.id,
+      required this.question,
       required this.category,
       required this.content,
       required this.imgUrl,
@@ -14,6 +16,7 @@ class Answer {
 
   factory Answer.fromJson(Map<String, dynamic> json) {
     return Answer(
+        id: json['id'],
         question: json['question'],
         category: json['category'],
         content: json['content'],
