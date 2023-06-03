@@ -1,7 +1,8 @@
 import 'package:bep/PopupView/popupView.dart';
 import 'package:flutter/material.dart';
 
-Widget donateBtn(context, String category, Future<void> Function() getPoint) {
+Widget donateBtn(
+    context, int id, String category, Future<void> Function() getPoint) {
   return Expanded(
     child: Align(
       alignment: Alignment.bottomCenter,
@@ -11,12 +12,16 @@ Widget donateBtn(context, String category, Future<void> Function() getPoint) {
           onPressed: () => showDialog<String>(
             context: context,
             builder: (BuildContext context) => popupView(
+              id: id,
               category: category,
               getPoint: getPoint,
             ),
           ),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(width: 23, height: 30, child: Image.asset('assets/images/donation.png')),
+            Container(
+                width: 23,
+                height: 30,
+                child: Image.asset('assets/images/donation.png')),
             SizedBox(width: 8.0),
             Text('Donate', style: TextStyle(color: Colors.white, fontSize: 20)),
           ]),

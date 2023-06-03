@@ -8,9 +8,11 @@ import 'package:bep/ModalView/ui/searchLinkWidget.dart';
 
 import 'package:flutter/material.dart';
 
-Widget modalView(_width, context, Answer quizAnswer, Future<void> Function() getPoint) {
+Widget modalView(
+    _width, context, Answer quizAnswer, Future<void> Function() getPoint) {
   return Container(
-    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(44)),
+    decoration: BoxDecoration(
+        color: Colors.white, borderRadius: BorderRadius.circular(44)),
     height: MediaQuery.of(context).size.height,
     child: Column(
       children: [
@@ -19,7 +21,7 @@ Widget modalView(_width, context, Answer quizAnswer, Future<void> Function() get
         quizWidget(quizAnswer.question),
         answerWidget(quizAnswer.content),
         searchLinkWidget(quizAnswer.question),
-        donateBtn(context, quizAnswer.category, getPoint),
+        donateBtn(context, quizAnswer.id, quizAnswer.category, getPoint),
       ],
     ),
   );

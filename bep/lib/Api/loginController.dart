@@ -20,7 +20,9 @@ class LoginController {
         data: userInfo,
         options: Options(contentType: Headers.jsonContentType),
       );
-      return googleLoginResponse(token: response.data['accessToken'], userPoint: response.data['userPoint']);
+      return googleLoginResponse(
+          token: response.data['accessToken'],
+          userPoint: response.data['userPoint']);
     } on DioError catch (e) {
       if (e.response == null) {
         print('DioError: $e');

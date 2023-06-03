@@ -16,7 +16,7 @@ class menu extends StatelessWidget {
           iconSize: 25,
           icon: Image.asset('assets/images/menu.png'),
           onPressed: () {
-            Navigator.pushNamed(context, '/DonationStatus');
+            Navigator.pushNamed(context, '/ChatStatus');
           },
         ),
       ),

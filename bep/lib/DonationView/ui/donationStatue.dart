@@ -4,6 +4,8 @@ import 'package:bep/DonationView/ui/donationStatusList.dart';
 import '../../DonationView/ui/donationChart.dart';
 import 'package:flutter/material.dart';
 
+import 'donationBtn.dart';
+
 Map<String, Color> colors = {
   "Life on Land": Color.fromRGBO(86, 192, 43, 1),
   "Other": Color.fromARGB(255, 33, 33, 33),
@@ -58,6 +60,7 @@ class _DonationStatusState extends State<DonationStatus> {
                   colors: colors,
                 )
               : Text(''),
+          DonationBtn(),
         ],
       ),
     );

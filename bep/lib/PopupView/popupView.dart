@@ -3,10 +3,11 @@ import 'package:bep/PopupView/titlePopup.dart';
 import 'package:flutter/material.dart';
 
 class popupView extends StatefulWidget {
+  final int id;
   final String category;
   final Future<void> Function() getPoint;
 
-  popupView({required this.category, required this.getPoint});
+  popupView({required this.id, required this.category, required this.getPoint});
 
   @override
   _popupViewState createState() => _popupViewState();
@@ -17,7 +18,8 @@ class _popupViewState extends State<popupView> {
   DonationController donationController = DonationController();
 
   Future<int> donateToCategory() async {
-    return await donationController.donateToCategory(widget.category, _points, widget.getPoint);
+    return await donationController.donateToCategory(
+        widget.id, widget.category, _points, widget.getPoint);
   }
 
   void _decrementPoints() {
@@ -54,7 +56,10 @@ class _popupViewState extends State<popupView> {
                   child: const Text(
                     '-',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 40, color: Colors.grey, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 40,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -70,7 +75,10 @@ class _popupViewState extends State<popupView> {
                   child: const Text(
                     '+',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 40, color: Colors.grey, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 40,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -91,7 +99,9 @@ class _popupViewState extends State<popupView> {
                         'NO',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 20, color: Color.fromRGBO(54, 123, 183, 1.0), fontWeight: FontWeight.bold),
+                            fontSize: 20,
+                            color: Color.fromRGBO(54, 123, 183, 1.0),
+                            fontWeight: FontWeight.bold),
                       ),
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -116,7 +126,10 @@ class _popupViewState extends State<popupView> {
                       child: const Text(
                         'YES',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
                       style: TextButton.styleFrom(
                         backgroundColor: Color.fromRGBO(54, 123, 183, 1.0),

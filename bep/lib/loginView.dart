@@ -1,5 +1,6 @@
 import 'package:bep/Api/Response/googleLoginResponse.dart';
 import 'package:bep/Api/loginController.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'MainView/mainView.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -74,7 +75,8 @@ class _LoginViewState extends State<LoginView> {
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                     child: Text(
                       "BeP",
-                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Image.asset(
@@ -92,6 +94,21 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   LoginButton(isLoading, signInWithGoogle),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(0, 20, 0, 30),
+                      child: GestureDetector(
+                        onTap: () {
+                          Uri uri = Uri.parse('https://www.youtube.com/');
+                          launchUrl(uri);
+                        },
+                        child: Text(
+                          'How to use BeP',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      )),
                 ],
               ),
       ),

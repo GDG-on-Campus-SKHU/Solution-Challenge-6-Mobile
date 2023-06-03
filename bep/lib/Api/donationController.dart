@@ -6,8 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DonationController {
   Dio dio = createDioClient();
 
-  Future<int> donateToCategory(String category, int point, Future<void> Function() getPoint) async {
+  Future<int> donateToCategory(int id, String category, int point, Future<void> Function() getPoint) async {
     Map<String, dynamic> request = {
+      'id': id,
       'category': category,
       'donationPoint': point,
     };
@@ -17,7 +18,7 @@ class DonationController {
       dio.options.headers['Authorization'] = 'Bearer $token';
 
       var response = await dio.post(
-        '/main/donations',
+        '/main/donations/${id}',
         data: request,
         options: Options(contentType: Headers.jsonContentType),
       );
@@ -39,7 +40,7 @@ class DonationController {
       final token = prefs.getString('accessToken');
       dio.options.headers['Authorization'] = 'Bearer $token';
 
-      var response = await dio.get('/main/donations/categories');
+      var response = await dio.get('/main/donations');
       List<dynamic> jsonList = response.data;
       List<CategoryState> categoriesState = jsonList.map((json) => CategoryState.fromJson(json)).toList();
       return categoriesState;
@@ -51,16 +52,19 @@ class DonationController {
 }
 
 class CategoryState {
+  final int id;
   final String category;
   final int donationPoint;
 
   CategoryState({
+    required this.id,
     required this.category,
     required this.donationPoint,
   });
 
   factory CategoryState.fromJson(Map<String, dynamic> json) {
     return CategoryState(
+      id: json['id'],
       category: json['category'],
       donationPoint: json['donationPoint'],
     );
