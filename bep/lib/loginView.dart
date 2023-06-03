@@ -75,8 +75,7 @@ class _LoginViewState extends State<LoginView> {
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                     child: Text(
                       "BeP",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Image.asset(
@@ -98,7 +97,7 @@ class _LoginViewState extends State<LoginView> {
                       padding: EdgeInsets.fromLTRB(0, 20, 0, 30),
                       child: GestureDetector(
                         onTap: () {
-                          Uri uri = Uri.parse('https://www.youtube.com/');
+                          Uri uri = Uri.parse('https://www.youtube.com/watch?v=eIh8eERBSR4');
                           launchUrl(uri);
                         },
                         child: Text(

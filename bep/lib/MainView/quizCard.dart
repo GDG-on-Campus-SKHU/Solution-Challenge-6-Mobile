@@ -97,6 +97,7 @@ class _quizCardState extends State<quizCard> {
                         : Text(
                             widget.mPoint.toString(),
                             textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 12),
                           ),
                   ),
                 ),
