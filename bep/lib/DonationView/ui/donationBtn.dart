@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DonationBtn extends StatefulWidget {
   @override
@@ -18,11 +19,18 @@ class _DonationBtnState extends State<DonationBtn> {
               child: Column(
                 children: [
                   Text('\$1 Donated'),
-                  Image.asset(
-                    'assets/images/paypal-donate-button.png',
-                    width: 200,
-                    height: 80,
-                    fit: BoxFit.fill,
+                  GestureDetector(
+                    onTap: () {
+                      Uri uri = Uri.parse(
+                          'https://paypal.me/jiseon0212?country.x=KR&locale.x=ko_KR');
+                      launchUrl(uri);
+                    },
+                    child: Image.asset(
+                      'assets/images/paypal-donate-button.png',
+                      width: 200,
+                      height: 80,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ],
               ))),

@@ -98,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
                       padding: EdgeInsets.fromLTRB(0, 20, 0, 30),
                       child: GestureDetector(
                         onTap: () {
-                          Uri uri = Uri.parse('https://www.youtube.com/');
+                          Uri uri = Uri.parse('https://youtu.be/eIh8eERBSR4');
                           launchUrl(uri);
                         },
                         child: Text(
