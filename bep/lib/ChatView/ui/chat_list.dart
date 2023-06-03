@@ -108,7 +108,7 @@ class _ChatListViewState extends State<ChatListView> {
                     borderRadius: BorderRadius.circular(25.0),
                     borderSide: BorderSide(
                       color: Colors.black26,
-                      width: 10.0,
+                      width: 1.0,
                     ),
                   ),
                 ),
